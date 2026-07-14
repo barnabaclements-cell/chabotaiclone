@@ -170,3 +170,10 @@ SECURE_HSTS_SECONDS = 31536000 if not DEBUG else 0
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
 SECURE_HSTS_PRELOAD = True
+
+print("=" * 50)
+print("SECRET_KEY:", bool(SECRET_KEY))
+print("DEBUG:", DEBUG)
+print("ALLOWED_HOSTS:", ALLOWED_HOSTS)
+print("DATABASE_URL:", DATABASES["default"]["ENGINE"])
+print("=" * 50)
