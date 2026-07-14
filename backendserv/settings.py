@@ -75,7 +75,11 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'backendserv.urls'
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
+    "https://chabotaiclone-frontend.onrender.com",
+]
+CORS_ALLOW_HEADERS = [
+    "authorization",
+    "content-type",
 ]
 
 frontend_url = os.getenv("FRONTEND_URL")
