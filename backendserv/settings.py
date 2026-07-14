@@ -33,7 +33,7 @@ if not SECRET_KEY:
     raise ValueError("SECRET_KEY environment variable is not set")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", "False") == "True"
-
+print("ENV ALLOWED_HOSTS =", os.environ.get("ALLOWED_HOSTS"))
 ALLOWED_HOSTS =  os.getenv(
     "ALLOWED_HOSTS",
     "localhost,127.0.0.1"
