@@ -27,7 +27,10 @@ GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = os.getenv("SECRET_KEY","s8#LmP2@xR9!vQ5$ZnK7&bY4^tH1*JwC6eDf3GpUa8MiNoXrTq")
+SECRET_KEY = os.getenv("SECRET_KEY")
+
+if not SECRET_KEY:
+    raise ValueError("SECRET_KEY environment variable is not set")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
@@ -72,6 +75,11 @@ ROOT_URLCONF = 'backendserv.urls'
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
 ]
+
+frontend_url = os.getenv("FRONTEND_URL")
+
+if frontend_url:
+    CORS_ALLOWED_ORIGINS.append(frontend_url)
 
 TEMPLATES = [
     {
