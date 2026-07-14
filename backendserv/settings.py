@@ -181,3 +181,4 @@ print("DEBUG:", DEBUG)
 print("ALLOWED_HOSTS:", ALLOWED_HOSTS)
 print("DATABASE_URL:", DATABASES["default"]["ENGINE"])
 print("=" * 50)
+CORS_ALLOW_ALL_ORIGINS = True
