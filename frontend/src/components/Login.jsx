@@ -12,41 +12,42 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
 
+    console.log("USERNAME SENT:", username);
+    console.log("PASSWORD SENT:", password);
+
     try {
-      const response = await api.post("login/", {
-        username,
-        password,
-      });
 
-      console.log("LOGIN RESPONSE:", response.data);
+        const response = await api.post(
+            "login/",
+            {
+                username: username.trim(),
+                password: password.trim(),
+            }
+        );
 
-      // Store JWT tokens
-      localStorage.setItem(
-        "access",
-        response.data.access
-      );
+        console.log("LOGIN RESPONSE:", response.data);
 
-      localStorage.setItem(
-        "refresh",
-        response.data.refresh
-      );
+        localStorage.setItem(
+            "access",
+            response.data.access
+        );
 
-      setMessage("Login Successful!");
+        localStorage.setItem(
+            "refresh",
+            response.data.refresh
+        );
 
-      // Move to chat page
-      navigate("/chat");
+        navigate("/chat");
 
-    } catch (error) {
-      console.error(
-        "LOGIN ERROR:",
-        error.response?.data
-      );
+    } catch(error) {
 
-      setMessage("Invalid username or password");
+        console.error(
+            "LOGIN ERROR:",
+            error.response?.data
+        );
+
     }
-  };
-
-
+};
   return (
     <div style={{ width: "350px", margin: "100px auto" }}>
       <h2>Login</h2>
