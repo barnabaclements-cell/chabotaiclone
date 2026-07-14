@@ -38,6 +38,8 @@ ALLOWED_HOSTS =  os.getenv(
     "ALLOWED_HOSTS",
     "localhost,127.0.0.1"
 ).split(",")
+print("DEBUG =", DEBUG)
+print("ALLOWED_HOSTS =", ALLOWED_HOSTS)
 
 
 # Application definition
