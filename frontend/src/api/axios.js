@@ -1,5 +1,7 @@
 import axios from "axios";
+
 console.log("API URL =", import.meta.env.VITE_API_URL);
+
 const api = axios.create({
     baseURL: import.meta.env.VITE_API_URL,
     headers: {
@@ -7,7 +9,8 @@ const api = axios.create({
     },
 });
 
-// Add JWT access token to every request
+
+// Add JWT token to every request
 api.interceptors.request.use(
     (config) => {
 
@@ -21,5 +24,11 @@ api.interceptors.request.use(
 
         return config;
     },
-    (error) => Promise.reject(error)
+
+    (error) => {
+        return Promise.reject(error);
+    }
 );
+
+
+export default api;
