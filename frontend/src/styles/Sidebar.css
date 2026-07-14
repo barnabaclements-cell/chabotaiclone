@@ -1,0 +1,101 @@
+/* Sidebar */
+
+.sidebar {
+    width: 280px;
+    height: 100vh;
+    background-color: #202123;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+/* Logo */
+
+.sidebar h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* New Chat Button */
+
+.new-chat-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: #10a37f;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: 0.3s;
+}
+
+.new-chat-btn:hover {
+    background-color: #0d8b6c;
+}
+
+/* Thread List */
+
+.thread-list {
+    flex: 1;
+    overflow-y: auto;
+}
+
+/* Individual Thread */
+
+.thread-item {
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition: 0.3s;
+}
+
+.thread-item:hover {
+    background-color: #343541;
+}
+
+/* Selected Thread */
+
+.thread-item.active {
+    background-color: #444654;
+}
+
+/* Empty Message */
+
+.empty-thread {
+    color: #bbbbbb;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Logout Button */
+
+.logout-btn {
+    margin-top: auto;
+    width: 100%;
+    padding: 12px;
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.logout-btn:hover {
+    background-color: #dc2626;
+}
+
+/* Scrollbar */
+
+.thread-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.thread-list::-webkit-scrollbar-thumb {
+    background: #666;
+    border-radius: 6px;
+}
