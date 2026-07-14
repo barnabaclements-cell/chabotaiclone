@@ -4,7 +4,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 
-from .models import Thread
+from .models import Thread, Message
+from .services import ask_groq
 
 
 class ChatView(APIView):
@@ -97,3 +98,67 @@ class ChatView(APIView):
                 },
                 status=500
             )
+class ThreadListView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        threads = Thread.objects.filter(
+            user=request.user
+        ).order_by("-created")
+
+        data = []
+
+        for thread in threads:
+            data.append({
+                "id": thread.id,
+                "title": thread.title
+            })
+
+        return Response(data)
+
+
+class CreateThreadView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        title = request.data.get("title", "New Chat")
+
+        thread = Thread.objects.create(
+            user=request.user,
+            title=title
+        )
+
+        return Response({
+            "id": thread.id,
+            "title": thread.title
+        })
+
+
+class ThreadMessagesView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, thread_id):
+        try:
+            thread = Thread.objects.get(
+                id=thread_id,
+                user=request.user
+            )
+        except Thread.DoesNotExist:
+            return Response(
+                {"error": "Thread not found"},
+                status=404
+            )
+
+        messages = thread.messages.all().order_by("created")
+
+        data = []
+
+        for message in messages:
+            data.append({
+                "id": message.id,
+                "role": message.role,
+                "content": message.content,
+                "created": message.created,
+            })
+
+        return Response(data)        
